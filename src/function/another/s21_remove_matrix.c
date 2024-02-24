@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include "../s21_matrix.h"
+#include "../../s21_matrix.h"
 
 /*!
   @ingroup MatrixFunc Функции над матрицами

@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include "../s21_matrix.h"
+#include "../../s21_matrix.h"
 
 /*!
   @ingroup MatrixFunc Функции над матрицами
@@ -31,12 +31,12 @@ int s21_create_matrix(int rows, int columns, matrix_t *result) {
     result->matrix = (type_t **)large_ptr;
     result->rows = rows;
     result->columns = columns;
-  } 
+  }
 
   // init array to matrix value
   for (size_t i = 0; !error && i < (size_t)rows; i++) {
     small_ptr = calloc(columns, SIZE);
-    if (!small_ptr){
+    if (!small_ptr) {
       error = 2;
       error_index = i;
     }

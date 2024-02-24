@@ -18,7 +18,7 @@ void print_matrix(matrix_t *matrix, char *text) {
 
 int main() {
   matrix_t A = {0};
-  int rows = 3, columns = 3, error = 0;
+  int rows = 5, columns = 5, error = 0;
 
   error = s21_create_matrix(rows, columns, &A);
   printf("error: %d\n", error);
