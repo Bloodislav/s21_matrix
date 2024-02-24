@@ -12,7 +12,7 @@ REPORTFLAGS = --gcov-exclude-directories $(func_dir)/support --html-nested
 project_name = s21_matrix
 report_dir = gcovr-report
 func_dir = function
-test_dir = .
+test_dir = tests
 report_name = $(report_dir)/$(project_name).html
 
 lib_name := $(addsuffix .a, $(project_name))

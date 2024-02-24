@@ -17,8 +17,11 @@ int s21_eq_matrix(matrix_t *A, matrix_t *B) {
 
   if (result) result = s21_is_same_size(A, B);
   for (size_t i = 0; result && i < (size_t)A->rows; i++)
-    for (size_t j = 0; result && j < (size_t)A->columns; j++)
-      result = (fabsl(A->matrix[i][j] - B->matrix[i][j])) < PRECISION;
-
+    for (size_t j = 0; result && j < (size_t)A->columns; j++) {
+      result = (isinf(A->matrix[i][j]) && isinf(B->matrix[i][j]));
+      if (!result) result = (isnan(A->matrix[i][j]) && isnan(B->matrix[i][j]));
+      if (!result)
+        result = (fabsl(A->matrix[i][j] - B->matrix[i][j])) < PRECISION;
+    }
   return result;
 }
