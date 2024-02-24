@@ -11,6 +11,6 @@ void s21_remove_matrix(matrix_t *A) {
     for (size_t i = 0; i < (size_t)A->rows; i++)
       if (*(A->matrix + i)) free(*(A->matrix + i));
 
-    free(A->matrix); 
+    free(A->matrix);
   }
 }
