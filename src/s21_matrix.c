@@ -58,7 +58,6 @@ int main() {
   s21_remove_matrix(&X);
   s21_remove_matrix(&Z);
 
-
   printf("res: %d\n", res);
   // printf("det: %lf\n", det);
 

@@ -4,7 +4,7 @@
 
 /*!
   @ingroup MatrixFunc Функции над матрицами
-  @brief 
+  @brief
 
   @param[in] result Указатель на результат
   @return 0 - OK 1 - ошибка вычисления
@@ -17,7 +17,7 @@ int s21_inverse_matrix(matrix_t *A, matrix_t *result) {
   // secomd valid
   if (!error) error = calc_error * (A->rows != A->columns);
   if (!error) error = calc_error * (A->rows == 1);
-  
+
   // Clculate inverce
   if (!error) {
     type_t det = 0;
@@ -30,8 +30,8 @@ int s21_inverse_matrix(matrix_t *A, matrix_t *result) {
 
     // 2. Построение матрицы алгебраических дополнений:
     if (!error) error |= s21_transpose(A, &transpose);
-    
-    // 3. Транспонированная матрица 
+
+    // 3. Транспонированная матрица
     if (!error) error |= s21_calc_complements(&transpose, &calc_comp);
 
     // 4. mul to num
