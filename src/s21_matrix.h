@@ -20,6 +20,8 @@ typedef struct matrix_struct {
   int columns;
 } matrix_t;
 
+enum error { ok = 0, incorrect_matrix = 1, calc_error = 2 };
+
 /*!
   @defgroup MatrixFunc Функции над матрицами
   @brief Модуль операций над matrix_t
@@ -29,10 +31,9 @@ typedef struct matrix_struct {
   @return 2 - Ошибка вычисления (несовпадающие размеры матриц; матрица, для
   которой нельзя провести вычисления и т.д.)
 */
-// INCORRECT_MATRIX
-enum error { ok = 0, incorrect_matrix = 1, calc_error = 2 };
+
 /**************************************************************************/
-//                    ANOTHER                                              |
+/*                    ANOTHER                                             */
 /**************************************************************************/
 int s21_create_matrix(int rows, int columns, matrix_t *result);  // | + |
 void s21_remove_matrix(matrix_t *A);                             // | + |
@@ -43,13 +44,15 @@ int s21_inverse_matrix(matrix_t *A, matrix_t *result);           // | - |
 /**************************************************************************/
 
 /**************************************************************************/
-//                    COMPARE
+/*                    COMPARE                                             */
 /**************************************************************************/
-int s21_eq_matrix(matrix_t *A, matrix_t *B);  // | - |
+int s21_eq_matrix(matrix_t *A, matrix_t *B);
+int s21_is_valid_matrix(matrix_t *A);
+int s21_is_same_size(matrix_t *A, matrix_t *B);
 /**************************************************************************/
 
 /**************************************************************************/
-//                    ARITHMETIC
+/*                    ARITHMETIC                                          */
 /**************************************************************************/
 int s21_sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result);     // | + |
 int s21_sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result);     // | + |
@@ -58,9 +61,11 @@ int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result);    // | + |
 /**************************************************************************/
 
 /**************************************************************************/
-//                    SUPPORT
+/*                    SUPPORT                                             */
 /**************************************************************************/
-int s21_is_valid_matrix(matrix_t *A);            // | + |
-int s21_is_same_size(matrix_t *A, matrix_t *B);  // | + |
+int s21_swap_rows(matrix_t *A, int row_index);
+int s21_copy_matrix(matrix_t *src, matrix_t *dest);
 /**************************************************************************/
+
+void print_matrix(matrix_t *matrix, char *text);
 #endif
