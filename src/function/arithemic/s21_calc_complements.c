@@ -9,6 +9,7 @@ int s21_calc_complements(matrix_t *A, matrix_t *result) {
   error |= incorrect_matrix * !s21_is_valid_matrix(A);
   error |= incorrect_matrix * (result == NULL);
   if (!error) error = calc_error * (A->rows != A->columns);
+  if (!error) error = calc_error * (A->rows == 1);
 
   // init value
   if (!error)
@@ -16,7 +17,7 @@ int s21_calc_complements(matrix_t *A, matrix_t *result) {
 
   // calculate value
   if (!error) {
-    double det = 0;
+    type_t det = 0;
     skip_indx_t indx = {0};
 
     for (size_t i = 0; i < (size_t)result->rows; i++) {

@@ -12,6 +12,7 @@
 #define PRECISION 1e-7
 
 typedef double type_t;
+
 #define SIZE sizeof(type_t)
 
 typedef struct matrix_struct {

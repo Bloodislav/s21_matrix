@@ -4,7 +4,7 @@ START_TEST(test_one_by_one) {
   matrix_t m = {0};
   matrix_t result = {0};
   int codec = s21_create_matrix(1, 1, &m);
-  if (codec) {
+  if (codec == ok) {
     int code = s21_calc_complements(&m, &result);
     ck_assert_int_eq(code, calc_error);
   }
