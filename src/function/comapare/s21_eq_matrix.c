@@ -16,6 +16,7 @@ int s21_eq_matrix(matrix_t *A, matrix_t *B) {
   result = s21_is_valid_matrix(A) && s21_is_valid_matrix(B);
 
   if (result) result = s21_is_same_size(A, B);
+
   for (size_t i = 0; result && i < (size_t)A->rows; i++)
     for (size_t j = 0; result && j < (size_t)A->columns; j++) {
       result = (isinf(A->matrix[i][j]) && isinf(B->matrix[i][j]));

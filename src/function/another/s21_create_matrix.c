@@ -44,14 +44,11 @@ int s21_create_matrix(int rows, int columns, matrix_t *result) {
   }
 
   // if an error occurred in the previous cycle
-  for (size_t j = 0; j < error_index && error == 2; j++) {
+  for (size_t j = 0; error == 2 && j < error_index; j++) {
     free(*(result->matrix + j));
     if (j + 1 == error_index) free(result->matrix);
   }
   error = (error != 2) * error;
-
-  if (!large_ptr) free(large_ptr);
-  if (!small_ptr) free(small_ptr);
 
   return error;
 }

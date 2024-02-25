@@ -17,7 +17,6 @@ void print_matrix(matrix_t *matrix, char *text) {
 }
 
 int main() {
-  
   const int size = 3;
   matrix_t m = {0};
   s21_create_matrix(size, size, &m);
@@ -33,9 +32,9 @@ int main() {
 
   double res = 0, det = -32;
   int code = s21_determinant(&m, &res), check_code = 0;
-  
+
   print_matrix(&m, "res");
-  
+
   printf("res: %lf\n", res);
   printf("det: %lf\n", det);
 

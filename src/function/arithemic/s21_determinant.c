@@ -18,7 +18,7 @@ int s21_determinant(matrix_t *A, double *result) {
     matrix_t tmp = {0};
 
     error = s21_create_matrix(A->rows, A->columns, &tmp);
-    
+
     // set value
     if (!error) {
       error = s21_copy_matrix(A, &tmp);
@@ -26,16 +26,15 @@ int s21_determinant(matrix_t *A, double *result) {
     }
 
     for (size_t i = 0; tmp_res && i < (size_t)tmp.rows; i++) {
-      // if tmp.matrix[i][i] == 0 
+      // if tmp.matrix[i][i] == 0
       if (!tmp.matrix[i][i]) {
         swap = s21_swap_rows(&tmp, i);
         error = (swap == 2);
       }
 
       // if dont swap rows or have calculating error
-      if (!error && !swap) 
-        tmp_res = 0;
-      
+      if (!error && !swap) tmp_res = 0;
+
       // if swap rows
       else if (swap == 1) {
         sign = !sign;
@@ -49,15 +48,15 @@ int s21_determinant(matrix_t *A, double *result) {
     }
 
     // calculate determinant
-    for (size_t i = 0; !error && tmp_res && i < (size_t)A->rows; i++) 
+    for (size_t i = 0; !error && tmp_res && i < (size_t)A->rows; i++)
       tmp_res *= tmp.matrix[i][i];
-    
+
     // check error
     if (!error) error = calc_error * (isnan(tmp_res) || isinf(tmp_res));
 
     // export
     if (!error) *result = (1 - 2 * sign) * tmp_res;
-    
+
     // remove tmp
     s21_remove_matrix(&tmp);
   }
