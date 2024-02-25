@@ -9,4 +9,6 @@
   @param[in] result Указатель на результат
   @return 0 - OK 1 - ошибка вычисления
 */
-int s21_inverse_matrix(matrix_t *A, matrix_t *result);
+// int s21_inverse_matrix(matrix_t *A, matrix_t *result) {
+
+// }
