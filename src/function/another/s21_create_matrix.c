@@ -14,7 +14,7 @@
 */
 int s21_create_matrix(int rows, int columns, matrix_t *result) {
   uint16_t error = 0;
-  size_t error_index = 0;
+  // size_t error_index = 0;
   void **large_ptr = NULL, *small_ptr = NULL;
 
   // first validation
@@ -36,18 +36,18 @@ int s21_create_matrix(int rows, int columns, matrix_t *result) {
   // init array to matrix value
   for (size_t i = 0; !error && i < (size_t)rows; i++) {
     small_ptr = calloc(columns, SIZE);
-    if (!small_ptr) {
-      error = 2;
-      error_index = i;
-    }
+    // if (!small_ptr) {
+    //   error = 2;
+    //   error_index = i;
+    // }
     if (!error) *(result->matrix + i) = (type_t *)small_ptr;
   }
 
-  // if an error occurred in the previous cycle
-  for (size_t j = 0; error == 2 && j < error_index; j++) {
-    free(*(result->matrix + j));
-    if (j + 1 == error_index) free(result->matrix);
-  }
+  // // if an error occurred in the previous cycle
+  // for (size_t j = 0; error == 2 && j < error_index; j++) {
+  //   free(*(result->matrix + j));
+  //   if (j + 1 == error_index) free(result->matrix);
+  // }
   error = (error != 2) * error;
 
   return error;

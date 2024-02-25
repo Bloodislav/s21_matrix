@@ -17,31 +17,55 @@ void print_matrix(matrix_t *matrix, char *text) {
 }
 
 int main() {
-  const int size = 3;
-  matrix_t m = {0};
-  s21_create_matrix(size, size, &m);
-  m.matrix[0][0] = 2;
-  m.matrix[0][1] = 3;
-  m.matrix[0][2] = 1;
-  m.matrix[1][0] = 7;
-  m.matrix[1][1] = 4;
-  m.matrix[1][2] = 1;
-  m.matrix[2][0] = 9;
-  m.matrix[2][1] = -2;
-  m.matrix[2][2] = 1;
+  int res = 0;
+  matrix_t A = {0};
+  matrix_t Z = {0};
+  matrix_t X = {0};
 
-  double res = 0, det = -32;
-  int code = s21_determinant(&m, &res), check_code = 0;
+  s21_create_matrix(3, 3, &A);
+  A.matrix[0][0] = 1.0;
+  A.matrix[0][1] = 2.0;
+  A.matrix[0][2] = 3.0;
+  A.matrix[1][0] = 4.0;
+  A.matrix[1][1] = 5.0;
+  A.matrix[1][2] = 6.0;
+  A.matrix[2][0] = 8.0;
+  A.matrix[2][1] = 6.0;
+  A.matrix[2][2] = 9.0;
 
-  print_matrix(&m, "res");
+  s21_inverse_matrix(&A, &Z);
 
-  printf("res: %lf\n", res);
-  printf("det: %lf\n", det);
+  s21_create_matrix(3, 3, &X);
 
-  printf("      code: %d\n", code);
-  printf("check_code: %d\n", check_code);
+  X.matrix[0][0] = -3.0 / 5.0;
+  X.matrix[0][1] = 0.0;
+  X.matrix[0][2] = 1.0 / 5.0;
+  ;
+  X.matrix[1][0] = -4.0 / 5.0;
+  X.matrix[1][1] = 1.0;
+  X.matrix[1][2] = -2.0 / 5.0;
+  X.matrix[2][0] = 16.0 / 15.0;
+  X.matrix[2][1] = -2.0 / 3.0;
+  X.matrix[2][2] = 1.0 / 5.0;
 
-  s21_remove_matrix(&m);
+  res = s21_eq_matrix(&X, &Z);
+
+  print_matrix(&A, "A");
+  print_matrix(&Z, "Z");
+  print_matrix(&X, "X");
+
+  s21_remove_matrix(&A);
+  s21_remove_matrix(&X);
+  s21_remove_matrix(&Z);
+
+
+  printf("res: %d\n", res);
+  // printf("det: %lf\n", det);
+
+  // printf("      code: %d\n", code);
+  // printf("check_code: %d\n", check_code);
+
+  // s21_remove_matrix(&m);
 
   return 0;
 }
